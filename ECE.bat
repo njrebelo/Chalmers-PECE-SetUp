@@ -1,0 +1,1 @@
+conda activate base && python C:\Users\PhotonicsUser\Desktop\ECE\experiment.py
