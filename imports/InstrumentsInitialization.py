@@ -166,6 +166,7 @@ def measurement(voltage_source,voltage,stop):
     timesV=[]
     voltages=[]
     start=time.perf_counter()
+    condition=0
     print("Press Ctrl-C to stop at any time")
     print("To change the voltage value halfway in the run presse the key V until a coment shows up!\n")
     timesV.append((start-start))
@@ -181,6 +182,7 @@ def measurement(voltage_source,voltage,stop):
             currents.append(curr)
             times.append((now-start))
             if keyboard.is_pressed("v"):
+                conditon=1
                 time.sleep(2)
                 print("What is the new voltage you would like to use:")
                 time.sleep(1)
@@ -205,7 +207,11 @@ def measurement(voltage_source,voltage,stop):
             voltage_source.write("OUTPUT OFF")
             break
     timesV.append((now-start))
-    voltages.append(new_voltage)
+    if condition==1:
+        voltages.append(new_voltage)
+    else:
+        pass
+    
     data_current=np.vstack((times,currents))
     data_current=np.transpose(data_current)
     data_voltage=np.vstack((timesV,voltages))
